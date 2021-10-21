@@ -32,6 +32,7 @@ console.log('prezzo totale',finalPrice);
 
 youngSale = finalPrice * 0.2 ;
 elderSale = finalPrice * 0.4 ;
+newSale = finalPrice * 0.2 ;
 
 // check sconto scritto bene
 if(specialSale !== 'SCONTO20'){
@@ -47,7 +48,9 @@ document.getElementById('output1').innerHTML = outputStrn;
 
 // check validità sconto per età
 if(age <= 20){
-  specialSale = true;
+  finalPrice = num - newSale;
+}else if(age <= 18){
+  finalPrice = num - newSale - youngSale;
 }else{
   scontoValido = false;
   errorMsg2 = 'Codice non valido per la tua fascia di età';
