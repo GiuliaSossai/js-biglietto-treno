@@ -27,12 +27,15 @@ let errorMsg = '';
 let errorMsg2 = '';
 let outputStrn = '';
 let outputStrn2 = '';
+let kmAgeValid = true;
 
 console.log('prezzo totale',finalPrice);
 
-youngSale = finalPrice * 0.2 ;
-elderSale = finalPrice * 0.4 ;
-newSale = finalPrice * 0.2 ;
+youngSale = finalPrice * 0.2;
+elderSale = finalPrice * 0.4;
+newSale = finalPrice * 0.2;
+//ultraSale = youngSale + newSale;
+//ha senso ultrasale???
 
 // check sconto scritto bene
 if(specialSale !== 'SCONTO20'){
@@ -49,8 +52,6 @@ document.getElementById('output1').innerHTML = outputStrn;
 // check validità sconto per età
 if(age <= 20){
   finalPrice = num - newSale;
-}else if(age <= 18){
-  finalPrice = num - newSale - youngSale;
 }else{
   scontoValido = false;
   errorMsg2 = 'Codice non valido per la tua fascia di età';
@@ -65,13 +66,13 @@ document.getElementById('output2').innerHTML = outputStrn2;
 console.log('scontoValido',scontoValido);
 
 // controllo se numeri inseriti validi
-let kmAgeValid = true;
-
 if(isNaN(numKm) == false && isNaN(age) == false){
   kmAgeValid = false;
 
   if(age < 18){
-    finalPrice = num - youngSale;
+    finalPrice = num - youngSale *2;
+    //non va bene ancora - a certi km il risultato viene con diversi deciamli
+    // dovrei mettere il *2 solo se l'utente ha scritto SCONTO20
   }else if(age > 65){
     finalPrice = num - elderSale;
   }else{
@@ -81,7 +82,7 @@ if(isNaN(numKm) == false && isNaN(age) == false){
    document.getElementById('price').innerHTML = finalPrice;
 }
 
-console.log('numValido',kmAgeValid);
+console.log('kmAgeValido',kmAgeValid);
 console.log('errorMsg',errorMsg);
 console.log('errorMsg2',errorMsg2);
 
