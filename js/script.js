@@ -17,7 +17,7 @@
  const numKm = 50;
  //parseInt(prompt('Quanti chilometri devi fare')); 
 
- const age = 75;
+ const age = 25;
  //prompt('Quanti anni hai'); 
 
  const price = 0.21;
@@ -27,20 +27,31 @@
 
  console.log('prezzo totale',finalPrice);
 
-
  youngSale = finalPrice * 0.2 ;
- let youngPrice = false;
- if(age === 18 || age < 18){
-  youngPrice = finalPrice - youngSale ;
- }
-
- console.log('prezzo sconto under 18',youngPrice);
-
- 
  elderSale = finalPrice * 0.4 ;
- let elderPrice = false;
- if(age === 65 || age > 65){
-   elderPrice = finalPrice - elderSale ;
- }
+//  let youngPrice = false;
+//  if( age < 18){
+//   youngPrice = finalPrice - youngSale ;
+//  }
 
- console.log('prezzo sconto over 65',elderPrice);
+//  console.log('prezzo sconto under 18',youngPrice);
+
+
+
+//  let elderPrice = false;
+//  if( age > 65){
+//    elderPrice = finalPrice - elderSale ;
+//  }
+
+//  console.log('prezzo sconto over 65',elderPrice);
+
+
+if(age < 18){
+  finalPrice = num - youngSale;
+}else if(age > 65){
+  finalPrice = num - elderSale;
+}else{
+  finalPrice = num;
+}
+
+ document.getElementById('price').innerHTML = finalPrice;
