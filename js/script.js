@@ -9,59 +9,81 @@
  * 
  * BONUS:
  * 1. controllare validità dei dati
- * 2. se utente ha età <= 20 anni, aggiungere sconto 20%.
+ * 2. se utente ha età <= 20 anni, inserire il codice di sconto “SCONTO20”
  *    se no, messaggio errore “Codice non valido per la tua fascia di età"
  *    Se inserisce il codice sbagliato comunicare “Codice non valido”
  */
 
- const numKm = parseInt(prompt('Quanti chilometri devi fare')); 
+const numKm = parseInt(prompt('Quanti chilometri devi fare')); 
+const age = parseInt(prompt('Quanti anni hai'));
+const specialSale = prompt ('inserisci "SCONTO20"');
 
- const age = parseInt(prompt('Quanti anni hai')); 
+const price = 0.21;
+let num = numKm * price;
+let finalPrice = num.toFixed(2);
 
- const price = 0.21;
- 
- let num = numKm * price;
- let finalPrice = num.toFixed(2);
+let scontoValido = true;
+let errorMsg = '';
+let errorMsg2 = '';
+let outputStrn = '';
+let outputStrn2 = '';
 
- console.log('prezzo totale',finalPrice);
+console.log('prezzo totale',finalPrice);
 
- youngSale = finalPrice * 0.2 ;
- elderSale = finalPrice * 0.4 ;
-//  let youngPrice = false;
-//  if( age < 18){
-//   youngPrice = finalPrice - youngSale ;
-//  }
+youngSale = finalPrice * 0.2 ;
+elderSale = finalPrice * 0.4 ;
 
-//  console.log('prezzo sconto under 18',youngPrice);
+// check sconto scritto bene
+if(specialSale !== 'SCONTO20'){
+  scontoValido = false;
+  errorMsg = 'Codice non valido';
+}
 
+if(!scontoValido){
+  outputStrn = errorMsg;
+}
 
+document.getElementById('output1').innerHTML = outputStrn;
 
-//  let elderPrice = false;
-//  if( age > 65){
-//    elderPrice = finalPrice - elderSale ;
-//  }
-
-//  console.log('prezzo sconto over 65',elderPrice);
-
-
-if(age < 18){
-  finalPrice = num - youngSale;
-}else if(age > 65){
-  finalPrice = num - elderSale;
+// check validità sconto per età
+if(age <= 20){
+  specialSale = true;
 }else{
-  finalPrice = num;
+  scontoValido = false;
+  errorMsg2 = 'Codice non valido per la tua fascia di età';
 }
 
- document.getElementById('price').innerHTML = finalPrice;
-
-
- // controllo se numeri inseriti validi
- let kmValido = true;
-//  let ageValido = true;
-
-if(isNaN(numKm) && isNaN(age)){
-  kmValido = false;
+if(!scontoValido){
+  outputStrn2 = errorMsg2;
 }
 
-console.log('numValido',kmValido)
-// console.log('ageValido',ageValido)
+document.getElementById('output2').innerHTML = outputStrn2;
+
+console.log('scontoValido',scontoValido);
+
+// controllo se numeri inseriti validi
+let kmAgeValid = true;
+
+if(isNaN(numKm) == false && isNaN(age) == false){
+  kmAgeValid = false;
+
+  if(age < 18){
+    finalPrice = num - youngSale;
+  }else if(age > 65){
+    finalPrice = num - elderSale;
+  }else{
+    finalPrice = num;
+  }
+  
+   document.getElementById('price').innerHTML = finalPrice;
+}
+
+console.log('numValido',kmAgeValid);
+console.log('errorMsg',errorMsg);
+console.log('errorMsg2',errorMsg2);
+
+
+
+
+
+
