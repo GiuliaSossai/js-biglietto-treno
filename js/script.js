@@ -14,11 +14,9 @@
  *    Se inserisce il codice sbagliato comunicare “Codice non valido”
  */
 
- const numKm = 50;
- //parseInt(prompt('Quanti chilometri devi fare')); 
+ const numKm = parseInt(prompt('Quanti chilometri devi fare')); 
 
- const age = 25;
- //prompt('Quanti anni hai'); 
+ const age = parseInt(prompt('Quanti anni hai')); 
 
  const price = 0.21;
  
@@ -55,3 +53,15 @@ if(age < 18){
 }
 
  document.getElementById('price').innerHTML = finalPrice;
+
+
+ // controllo se numeri inseriti validi
+ let kmValido = true;
+//  let ageValido = true;
+
+if(isNaN(numKm) && isNaN(age)){
+  kmValido = false;
+}
+
+console.log('numValido',kmValido)
+// console.log('ageValido',ageValido)
