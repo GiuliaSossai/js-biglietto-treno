@@ -34,8 +34,6 @@ console.log('prezzo totale',finalPrice);
 youngSale = finalPrice * 0.2;
 elderSale = finalPrice * 0.4;
 newSale = finalPrice * 0.2;
-//ultraSale = youngSale + newSale;
-//ha senso ultrasale???
 
 // check sconto scritto bene
 if(specialSale !== 'SCONTO20'){
@@ -71,15 +69,14 @@ if(isNaN(numKm) == false && isNaN(age) == false){
 
   if(age < 18){
     finalPrice = num - youngSale *2;
-    //non va bene ancora - a certi km il risultato viene con diversi deciamli
     // dovrei mettere il *2 solo se l'utente ha scritto SCONTO20
-  }else if(age > 65){
+  }else if(age > 64){
     finalPrice = num - elderSale;
   }else{
     finalPrice = num;
   }
   
-   document.getElementById('price').innerHTML = finalPrice;
+   document.getElementById('price').innerHTML = finalPrice.toFixed(2);
 }
 
 console.log('kmAgeValido',kmAgeValid);
